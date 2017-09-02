@@ -3,7 +3,7 @@
 namespace NotificationChannels\Direkto;
 
 use NotificationChannels\Direkto\Exceptions\CouldNotSendNotification;
-use Direkto\Rest\Client as DirektoService;
+use GuzzleHttp\Client as DirektoService;
 
 class Direkto
 {
@@ -20,12 +20,11 @@ class Direkto
     /**
      * Direkto constructor.
      *
-     * @param  DirektoService $direktoService
      * @param DirektoConfig   $config
      */
-    public function __construct(DirektoService $direktoService, DirektoConfig $config)
+    public function __construct(DirektoConfig $config)
     {
-        $this->direktoService = $direktoService;
+        $this->direktoService = new DirektoService();
         $this->config = $config;
     }
 
@@ -35,47 +34,19 @@ class Direkto
      *
      * @param DirektoSmsMessage $message
      * @param string           $to
-     * @return \Direkto\Rest\Api\V2010\Account\MessageInstance
+     * @return \Direkto\MessageInstance
      */
-    protected function sendSmsMessage(DirektoSmsMessage $message, $to)
+    protected function sendSmsMessage(DirektoMessage $message, $to)
     {
         $params = [
-            'from' => $this->getFrom($message),
-            'body' => trim($message->content),
+            'telefono' => $to,
+            'texto'    => trim($message->content),
         ];
 
-        if ($serviceSid = $this->config->getServiceSid()) {
-            $params['messagingServiceSid'] = $serviceSid;
+        if (!$serviceURL = $this->config->getAccountURL()) {
+            throw CouldNotSendNotification::missingURL();
         }
-
-        return $this->direktoService->messages->create($to, $params);
+        return $this->direktoService->get($serviceURL . http_build_query($params));
     }
 
-    /**
-     * Get the from address from message, or config.
-     *
-     * @param DirektoMessage $message
-     * @return string
-     * @throws CouldNotSendNotification
-     */
-    protected function getFrom(DirektoMessage $message)
-    {
-        if (! $from = $message->getFrom() ?: $this->config->getFrom()) {
-            throw CouldNotSendNotification::missingFrom();
-        }
-
-        return $from;
-    }
-
-    /**
-     * Get the alphanumeric sender from config, if one exists.
-     *
-     * @return string|null
-     */
-    protected function getAlphanumericSender()
-    {
-        if ($sender = $this->config->getAlphanumericSender()) {
-            return $sender;
-        }
-    }
 }

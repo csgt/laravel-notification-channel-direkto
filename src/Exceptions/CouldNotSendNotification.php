@@ -31,6 +31,14 @@ class CouldNotSendNotification extends \Exception
     /**
      * @return static
      */
+    public static function missingURL()
+    {
+        return new static('Notification was not sent. Missing `URL` parameter.');
+    }
+
+    /**
+     * @return static
+     */
     public static function invalidReceiver()
     {
         return new static(

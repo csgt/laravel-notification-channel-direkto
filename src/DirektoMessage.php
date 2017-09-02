@@ -50,27 +50,4 @@ abstract class DirektoMessage
 
         return $this;
     }
-
-    /**
-     * Set the phone number the message should be sent from.
-     *
-     * @param  string $from
-     * @return $this
-     */
-    public function from($from)
-    {
-        $this->from = $from;
-
-        return $this;
-    }
-
-    /**
-     * Get the from address.
-     *
-     * @return string
-     */
-    public function getFrom()
-    {
-        return $this->from;
-    }
 }

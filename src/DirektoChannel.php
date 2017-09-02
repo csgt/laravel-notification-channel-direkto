@@ -45,18 +45,18 @@ class DirektoChannel
         try {
             $to = $this->getTo($notifiable);
             $message = $notification->toDirekto($notifiable);
-            $useSender = $this->canReceiveAlphanumericSender($notifiable);
-
+ 
             if (is_string($message)) {
-                $message = new DirektoSmsMessage($message);
+                $message = new DirektoMessage($message);
             }
 
             if (! $message instanceof DirektoMessage) {
                 throw CouldNotSendNotification::invalidMessageObject($message);
             }
 
-            return $this->direkto->sendMessage($message, $to, $useSender);
-        } catch (Exception $exception) {
+            return $this->direkto->sendMessage($message, $to);
+        } 
+        catch (Exception $exception) {
             $this->events->fire(
                 new NotificationFailed($notifiable, $notification, 'direkto', ['message' => $exception->getMessage()])
             );
@@ -91,7 +91,6 @@ class DirektoChannel
      */
     protected function canReceiveAlphanumericSender($notifiable)
     {
-        return method_exists($notifiable, 'canReceiveAlphanumericSender') &&
-        $notifiable->canReceiveAlphanumericSender();
+        return false;
     }
 }
