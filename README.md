@@ -77,7 +77,7 @@ In order to let your Notification know which phone are you sending/calling to, t
 ```php
 public function routeNotificationForDirekto()
 {
-    return '+1234567890';
+    return $this->mobile;
 }
 ```
 

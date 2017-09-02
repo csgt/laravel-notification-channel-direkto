@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\Direkto;
 
-abstract class DirektoMessage
+class DirektoMessage
 {
     /**
      * The message content.

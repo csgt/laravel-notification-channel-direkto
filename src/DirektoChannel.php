@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Events\Dispatcher;
 use NotificationChannels\Direkto\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Events\NotificationFailed;
+use Log;
 
 class DirektoChannel
 {
@@ -45,11 +46,9 @@ class DirektoChannel
         try {
             $to = $this->getTo($notifiable);
             $message = $notification->toDirekto($notifiable);
- 
             if (is_string($message)) {
                 $message = new DirektoMessage($message);
             }
-
             if (! $message instanceof DirektoMessage) {
                 throw CouldNotSendNotification::invalidMessageObject($message);
             }
@@ -78,7 +77,6 @@ class DirektoChannel
         if (isset($notifiable->celular)) {
             return $notifiable->celular;
         }
-
         throw CouldNotSendNotification::invalidReceiver();
     }
 

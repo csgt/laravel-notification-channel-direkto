@@ -20,6 +20,11 @@ class CouldNotSendNotification extends \Exception
             be ".DirektoMessage::class);
     }
 
+    public static function errorSending($message)
+    {
+        return new static('Notification was not sent. Error: ' . $message);
+    }
+
     /**
      * @return static
      */
