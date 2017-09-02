@@ -1,6 +1,6 @@
 # Direkto notifications channel for Laravel 5.4+
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/laravel-notification-channels/twilio.svg?style=flat-square)](https://packagist.org/packages/csgt/notification-channel-direkto)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/csgt/notification-channel-direkto.svg?style=flat-square)](https://packagist.org/packages/csgt/notification-channel-direkto)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/csgt/laravel-notification-channel-direkto.svg?style=flat-square)](https://packagist.org/packages/csgt/notification-channel-direkto)
 
