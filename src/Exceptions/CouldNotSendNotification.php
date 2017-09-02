@@ -2,7 +2,7 @@
 
 namespace NotificationChannels\Direkto\Exceptions;
 
-use NotificationChannels\Direkto\SmsMessage;
+use NotificationChannels\Direkto\DirektoMessage;
 
 class CouldNotSendNotification extends \Exception
 {
@@ -17,7 +17,7 @@ class CouldNotSendNotification extends \Exception
 
         return new static(
             "Notification was not sent. Message object class `{$className}` is invalid. It should
-            be ".SmsMessage::class);
+            be ".DirektoMessage::class);
     }
 
     /**

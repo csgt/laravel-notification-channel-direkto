@@ -32,11 +32,11 @@ class Direkto
     /**
      * Send an sms message using the Direkto Service.
      *
-     * @param DirektoSmsMessage $message
+     * @param DirektoMessage $message
      * @param string           $to
      * @return \Direkto\MessageInstance
      */
-    protected function sendSmsMessage(DirektoMessage $message, $to)
+    protected function sendMessage(DirektoMessage $message, $to)
     {
         $params = [
             'telefono' => $to,
