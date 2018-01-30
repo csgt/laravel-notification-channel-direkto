@@ -56,7 +56,7 @@ class DirektoChannel
             return $this->direkto->sendMessage($message, $to);
         }
         catch (Exception $exception) {
-            $this->events->handle(
+            $this->events->fire(
                 new NotificationFailed($notifiable, $notification, 'direkto', ['message' => $exception->getMessage()])
             );
         }
