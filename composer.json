@@ -6,17 +6,13 @@
     "authors": [
         {
             "name": "Jose Galindo",
-            "email": "jgalindo@com.gt",
+            "email": "jgalindo@softlogic.com.gt",
             "homepage": "https://github.com/csgt",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=7.0.0",
-        "illuminate/notifications": "5.6.*",
-        "illuminate/support": "5.6.*",
-        "illuminate/events": "5.6.*",
-        "illuminate/queue": "5.6.*",
         "guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
