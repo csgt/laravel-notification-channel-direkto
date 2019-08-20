@@ -1,13 +1,11 @@
 <?php
-
 namespace NotificationChannels\Direkto;
 
 use Exception;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Events\Dispatcher;
-use NotificationChannels\Direkto\Exceptions\CouldNotSendNotification;
 use Illuminate\Notifications\Events\NotificationFailed;
-use Log;
+use NotificationChannels\Direkto\Exceptions\CouldNotSendNotification;
 
 class DirektoChannel
 {
@@ -30,7 +28,7 @@ class DirektoChannel
     public function __construct(Direkto $direkto, Dispatcher $events)
     {
         $this->direkto = $direkto;
-        $this->events = $events;
+        $this->events  = $events;
     }
 
     /**
@@ -44,19 +42,18 @@ class DirektoChannel
     public function send($notifiable, Notification $notification)
     {
         try {
-            $to = $this->getTo($notifiable);
+            $to      = $this->getTo($notifiable);
             $message = $notification->toDirekto($notifiable);
             if (is_string($message)) {
                 $message = new DirektoMessage($message);
             }
-            if (! $message instanceof DirektoMessage) {
+            if (!$message instanceof DirektoMessage) {
                 throw CouldNotSendNotification::invalidMessageObject($message);
             }
 
             return $this->direkto->sendMessage($message, $to);
-        }
-        catch (Exception $exception) {
-            $this->events->fire(
+        } catch (Exception $exception) {
+            event(
                 new NotificationFailed($notifiable, $notification, 'direkto', ['message' => $exception->getMessage()])
             );
         }
