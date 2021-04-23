@@ -1,26 +1,29 @@
-# Direkto notifications channel for Laravel 5.4+
+# Direkto notifications channel for Laravel 5.4 - 8.0
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/csgt/notification-channel-direkto.svg?style=flat-square)](https://packagist.org/packages/csgt/notification-channel-direkto)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Total Downloads](https://img.shields.io/packagist/dt/csgt/laravel-notification-channel-direkto.svg?style=flat-square)](https://packagist.org/packages/csgt/notification-channel-direkto)
 
-This package makes it easy to send [Direkto notifications] with Laravel 5.4.
+This package makes it easy to send [Direkto notifications] with Laravel
+Laravel >5.4 branch 5.x
+Laravel >8 branch 6.x
 
 ## Contents
-- [Usage](#usage)
-	- [Available Message methods](#available-message-methods)
-- [Changelog](#changelog)
-- [Testing](#testing)
-- [Security](#security)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+
+-   [Usage](#usage)
+    -   [Available Message methods](#available-message-methods)
+-   [Changelog](#changelog)
+-   [Testing](#testing)
+-   [Security](#security)
+-   [Contributing](#contributing)
+-   [Credits](#credits)
+-   [License](#license)
 
 ## Installation
 
 You can install the package via composer:
 
-``` bash
+```bash
 composer require csgt/notification-channel-direkto
 ```
 
@@ -52,7 +55,7 @@ Add your Direkto Account SID, Auth Token, and From Number (optional) to your `co
 
 Now you can use the channel in your `via()` method inside the notification:
 
-``` php
+```php
 use NotificationChannels\Direkto\DirektoChannel;
 use NotificationChannels\Direkto\DirektoMessage;
 use Illuminate\Notifications\Notification;
@@ -85,8 +88,8 @@ public function routeNotificationForDirekto()
 
 #### DirektoSmsMessage
 
-- `from('')`: Accepts a phone to use as the notification sender.
-- `content('')`: Accepts a string value for the notification body.
+-   `from('')`: Accepts a phone to use as the notification sender.
+-   `content('')`: Accepts a string value for the notification body.
 
 ## Changelog
 
@@ -102,7 +105,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
 
-- [CS](https://github.com/csgt)
+-   [CS](https://github.com/csgt)
 
 ## License
 
